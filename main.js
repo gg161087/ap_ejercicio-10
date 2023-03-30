@@ -59,11 +59,16 @@ const eUno = () => {
     let p1B = document.getElementById('p-1b');
     let buttonB = document.getElementById('btn-1b');
 
-    buttonB.addEventListener('click', () => {                
-        num = input.value;
-        arrayVacio.push(num); 
-        input.value = '';              
-        p1B.innerText = arrayVacio;
+    buttonB.addEventListener('click', () => {
+        if (isNaN(input.value) || input.value == '') {
+            alert('solo números');
+            input.value = '';           
+        } else {
+            num = input.value;
+            arrayVacio.push(num); 
+            input.value = '';              
+            p1B.innerText = arrayVacio;
+        }                
     });
 
     let div1c = document.getElementById('div-1c');
@@ -72,16 +77,19 @@ const eUno = () => {
         ${createParrafo('','p-1c')}        
     `;
     let buttonC = document.getElementById('btn-1c');
+                   
     buttonC.addEventListener('click', () => {
+        buttonC.disabled = true;
         div1c.innerHTML += createUL('ul-1');
-        let ul = document.getElementById('ul-1');               
-        for (const iterator of arrayVacio) {
-            let li = document.createElement('li');
-            console.log(iterator);
-            li.innerText = iterator;
-            ul.appendChild(li);
+        let ul = document.getElementById('ul-1');
+        ul.style.textAlign = 'left';
+        for (const iterator of arrayVacio) {            
+            ul.innerHTML += `<li>${iterator}</li>`
         }
-        div1c.appendChild(ul)
+        input.disabled = true;        
+        buttonA.disabled = true;
+        buttonB.disabled = true;
+        
     }); 
 }
 
