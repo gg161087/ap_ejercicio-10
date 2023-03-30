@@ -14,7 +14,10 @@ let num4;
 let resultado;
 let booleano = true;
 
-const createParrafo = (text) => `<p>${text}</p>`;
+const createDiv = (id) => `<div id="${id}"></div>`;
+const createParrafo = (text, id) => `<p id="${id}">${text}</p>`;
+const createHdos = (text) => `<h2>${text}</h2>`;
+const createUL = (id) => `<ul id="${id}"></ul>`
 const createLabel = (text, para, id) => `<label for="${para}" id="${id}">${text}</label>`;
 const createButtonPrimary = (text, id) => `<button class="btn btn-primary" id="${id}">${text}</button>`;
 const createButtonDanger = (text, id) => `<button class="btn btn-danger" id="${id}">${text}</button>`;
@@ -23,9 +26,63 @@ const createInput = (tipo, id) => `<input type="${tipo}" id="${id}">`;
 const createSelect = (nombre, id) => `<select class="form-select-sm" name="${nombre}" id="${id}"></select>`
 const createOption = (valor, text) => `<option value=${valor}>${text}</option>`;
 
+const getRandomInt= (max) => {
+    return Math.floor(Math.random() * max);
+}
 
 const eUno = () => {
-    
+    app.innerHTML += `
+        ${createDiv('div-1a')}
+        ${createDiv('div-1b')}
+        ${createDiv('div-1c')}        
+    `;
+    let div1a = document.getElementById('div-1a');
+    div1a.innerHTML += `
+        ${createParrafo('Generador de números random')}
+        ${createLabel('Número generado: ', 'input-1', 'label-1')}
+        ${createInput('text', 'input-1')}
+        ${createButtonPrimary('Generar número', 'btn-1a')}
+        
+    `;      
+    let buttonA = document.getElementById('btn-1a');
+    let input = document.getElementById('input-1');
+    buttonA.addEventListener('click', () => {                
+        input.value = getRandomInt(100);          
+    });
+
+    let div1b = document.getElementById('div-1b');
+    div1b.innerHTML += `
+        ${createParrafo('Insertar número al array')}
+        ${createButtonSuccess('Agregar número al array', 'btn-1b')}
+        ${createParrafo('','p-1b')}        
+    `;
+    let p1B = document.getElementById('p-1b');
+    let buttonB = document.getElementById('btn-1b');
+
+    buttonB.addEventListener('click', () => {                
+        num = input.value;
+        arrayVacio.push(num); 
+        input.value = '';              
+        p1B.innerText = arrayVacio;
+    });
+
+    let div1c = document.getElementById('div-1c');
+    div1c.innerHTML += `        
+        ${createButtonDanger('Crear Lista', 'btn-1c')}
+        ${createParrafo('','p-1c')}        
+    `;
+    let buttonC = document.getElementById('btn-1c');
+    buttonC.addEventListener('click', () => {
+        div1c.innerHTML += createUL('ul-1');
+        let ul = document.getElementById('ul-1');               
+        for (const iterator of arrayVacio) {
+            let li = document.createElement('li');
+            console.log(iterator);
+            li.innerText = iterator;
+            ul.appendChild(li);
+        }
+        div1c.appendChild(ul)
+    }); 
 }
 
 const eDos = () => {
