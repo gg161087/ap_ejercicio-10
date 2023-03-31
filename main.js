@@ -4,6 +4,7 @@ const btnReset = document.getElementById('btn-reset');
 const divEnunciado = document.getElementById('enunciado');
 
 const vocales = ['a', 'e', 'i', 'o', 'u'];
+const arrayUnoASeis = [1,2,3,4,5,6];
 const arrayVacio = [];
 let promedios = {}
 let num;
@@ -12,6 +13,7 @@ let num2;
 let num3;
 let num4;
 let resultado;
+let i = 0;
 let booleano = true;
 
 const createDiv = (id) => `<div id="${id}"></div>`;
@@ -19,7 +21,7 @@ const createParrafo = (text, id) => `<p id="${id}">${text}</p>`;
 const createHdos = (text) => `<h2>${text}</h2>`;
 const createUL = (id) => `<ul id="${id}"></ul>`
 const createLabel = (text, para, id) => `<label for="${para}" id="${id}">${text}</label>`;
-const createButtonPrimary = (text, id) => `<button class="btn btn-primary" id="${id}">${text}</button>`;
+const createButtonPrimary = (text, id, funcion) => `<button class="btn btn-primary" id="${id}" onclick="${funcion}">${text}</button>`;
 const createButtonDanger = (text, id) => `<button class="btn btn-danger" id="${id}">${text}</button>`;
 const createButtonSuccess = (text, id) => `<button class="btn btn-success"id="${id}">${text}</button>`;
 const createInput = (tipo, id) => `<input type="${tipo}" id="${id}">`;
@@ -92,9 +94,57 @@ const eUno = () => {
         
     }); 
 }
+//eDos
+const eA = () => {
+    app.innerHTML += `<p>Resultado consigna A:</p>`        
+    while (arrayUnoASeis.length > i) {
+        app.innerHTML += `<p>${arrayUnoASeis[i]}</p>`
+        i++;
+    }        
+}
+const eB = () => {
+    app.innerHTML += `<p>Resultado consigna B:</p>`
+    for (i = 0; i < arrayUnoASeis.length; i++) {
+        app.innerHTML += `<p>${arrayUnoASeis[i]}</p>`            
+    }
+}
+const selector2 = () => { 
+    let value = document.getElementById('select-2').value;          
+    switch (value) {
+        case "a":
+            eA();
+            break;
+        case "b":
+            eB();
+        case "c":
+            eC();
+        case "d":
+            eD();
+        case "e":
+            eE();
+        case "f":
+            eF();    
+            break;
+        default:
+            break;
+    }
+} 
 
-const eDos = () => {
-    
+const eDos = () => {  
+    app.innerHTML += `
+        ${createLabel('Seleccione letra de ejercicio:', 'eDos', 'label-2')}
+        ${createSelect('eDos', 'select-2')}
+        ${createButtonPrimary('Seleccionar','btn-2','selector2()')}
+    `
+    let selectEDos = document.getElementById('select-2');    
+    selectEDos.innerHTML += `
+        ${createOption('a','A')}
+        ${createOption('b','B')}
+        ${createOption('c','C')}
+        ${createOption('d','D')}
+        ${createOption('e','E')}
+        ${createOption('f','F')}
+    ` 
 }
 
 const eTres = () => {
