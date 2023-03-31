@@ -108,6 +108,39 @@ const eB = () => {
         app.innerHTML += `<p>${arrayUnoASeis[i]}</p>`            
     }
 }
+const eC = () => {
+    app.innerHTML += `<p>Resultado consigna C:</p>`
+    arrayUnoASeis.forEach( (element) =>{
+        app.innerHTML += `<p>${element}</p>`
+    })
+}
+const eD = () => {
+    app.innerHTML += `<p>Resultado consigna D:</p>`        
+    for (const iterator of arrayUnoASeis) {
+        app.innerHTML += `<p>${iterator + 1}</p>`
+    } 
+}
+const eE = () => {
+    let copiaArrayMasUno = [];
+    app.innerHTML += `<p>Resultado consigna E:</p>`        
+    for (const iterator of arrayUnoASeis) {
+        copiaArrayMasUno.push(iterator + 1);
+    }
+    for (const iterator of copiaArrayMasUno) {
+        app.innerHTML += `<p>${iterator}</p>`    
+    } 
+}
+const eF = () => {
+    resultado = 0;
+    app.innerHTML += `<p>Resultado consigna F:</p>`        
+    for (const iterator of arrayUnoASeis) {        
+        resultado += iterator;
+    } 
+    app.innerHTML += `
+        <p>Suma total de los elementos: ${resultado} del array ${arrayUnoASeis}</p>
+        <p>Promedio: ${resultado/arrayUnoASeis.length}</p>
+    `
+}
 const selector2 = () => { 
     let value = document.getElementById('select-2').value;          
     switch (value) {
