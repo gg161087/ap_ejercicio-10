@@ -5,6 +5,10 @@ const divEnunciado = document.getElementById('enunciado');
 
 const vocales = ['a', 'e', 'i', 'o', 'u'];
 const arrayUnoASeis = [1,2,3,4,5,6];
+const arrayRandom = [15,3,24,8,16,6];
+const arrayCuatro =  [ 1, -4, 12, 0, -3, 29, -150];
+const arrayCinco =  ["Florencia", "Lucas", "Ezequiel", "Matias", "Bruno", "Gustavo", "Martin"];
+const arrayColores =  ["azul", "amarillo", "rojo", "verde", "café", "rosa"];
 const arrayVacio = [];
 let promedios = {}
 let num;
@@ -181,79 +185,243 @@ const eDos = () => {
 }
 
 const eTres = () => {
-    
+    app.innerHTML += `
+        ${createParrafo('','p-3a')}
+        ${createParrafo('','p-3b')}
+    `
+    const pA = document.getElementById('p-3a');
+    const pB = document.getElementById('p-3b');
+
+    pA.innerText = `Array: ${arrayRandom}`
+
+    for (const iterator of arrayRandom) {
+        resultado = iterator * iterator;
+        arrayVacio.push(resultado)
+    }
+    pB.innerText = `Array al cuadrado: ${arrayVacio}`
 }
 
 const eCuatro = () => {
-    
+    app.innerHTML += `${createParrafo('','p-4a')}`
+    const pA = document.getElementById('p-4a');
+    resultado = 0;
+    for (const iterator of arrayCuatro) {
+        if (iterator > 0) {
+            console.log(iterator);
+            resultado += iterator;
+        }
+    }
+    pA.innerText = `Suma de positivos: ${resultado}`
 }
 
 const eCinco = () => {
+    app.innerHTML += `
+        ${createParrafo('','p-5a')}
+        ${createParrafo('','p-5b')}
+        ${createParrafo('','p-5c')}
+        ${createParrafo('','p-5d')}
+        ${createParrafo('','p-5e')}
+        ${createParrafo('','p-5f')}
+        ${createParrafo('','p-5g')}
+    `
+    const pA = document.getElementById('p-5a');
+    pA.innerText = `Nombre con al menos 6 letras: `
+    const pB = document.getElementById('p-5b');
+    pB.innerText = `Nombres con M: `
+    const pC = document.getElementById('p-5c');
+    const pD = document.getElementById('p-5d');
+    const pF = document.getElementById('p-5f');
+    const pG = document.getElementById('p-5g');
     
+    const arrayD = []
+    const arrayF = []
+    for (const iterator of arrayCinco) {
+        if (iterator.length >= 6) {                        
+            pA.innerText += ` ${iterator},`
+        }
+        if (iterator[0] == 'M') {                
+            pB.innerText += ` ${iterator},`
+        }
+        arrayD.push(iterator[0])
+        arrayF.push(iterator.toUpperCase())
+        if (iterator[0] == 'J') {
+            pG.innerText = `Repuesta consigina G, SI, ${iterator[0]} comienza con 'J'`
+        } else {
+            pG.innerText = `Repuesta consigina G, NO, ninguno comienza con 'J'`
+        }
+    }
+    let ordenar = arrayCinco.sort();
+    pC.innerText = `Ordenar alfabéticamente: ${ordenar}`
+    console.log(ordenar);
+
+    pD.innerText = `Array de iniciales: ${arrayD}`
+    pF.innerText = `Array en mayúsculas: ${arrayF}`
+
 }
 
 const eSies = () => {
-    
+    app.innerHTML += createParrafo(`Array colores: ${arrayColores}`,'p-6a')   
+    resultado = prompt('ingrese un color: ');
+    if (arrayColores.includes(resultado.toLocaleLowerCase())) {
+        app.innerHTML += createParrafo(`El color ${resultado} SE encuentra en el array.`,'');         
+    }else{
+        app.innerHTML += createParrafo(`El color ${resultado} NO se encuentra en el array.`,'');
+    }
+}
+
+const arraySoloPares = (array) => {
+    for (const i of array) {
+        if (i%2 == 0) {
+            arrayVacio.push(i);
+        }
+    }
+    return arrayVacio;
 }
 
 const eSiete = () => {
-    
+    app.innerHTML += createParrafo(`Array de solo números: ${arrayRandom}`, '');
+    app.innerHTML += createParrafo(`Nuevo array de pares: ${arraySoloPares(arrayRandom)}`, '');
 }
 
+const arraySoloVocales = (array) => {
+    for (const i of array) {
+        for (const vocal of vocales) {            
+            if (i[0].toLocaleLowerCase() == vocal) {                
+                arrayVacio.push(i);
+            }
+        }
+    }
+    return arrayVacio;
+}
 const eOcho = () => {
-    
+    arrayCinco.push('Ernesto')
+    app.innerHTML += createParrafo(`Array de solo palabras: ${arrayCinco}`, '');
+    app.innerHTML += createParrafo(`Nuevo array que comienzan con una vocal: ${arraySoloVocales(arrayCinco)}`, '');    
+}
+
+const intercambiarElementos = (arreglo, indice1, indice2) => {  
+    const temp = arreglo[indice1];
+
+    arreglo[indice1] = arreglo[indice2];
+  
+    arreglo[indice2] = temp;
+  
+    return arreglo;
 }
 
 const eNueve = () => {
-    
+    app.innerHTML += createParrafo(`Array: ${arrayCinco}`, '');
+    app.innerHTML += createParrafo(`Nuevo array cambando el indice 1 por el 3: ${intercambiarElementos(arrayCinco, 1, 3)}`, ''); 
 }
 
 const eDiez = () => {
-    app.innerHTML += createLabel('Ingrese un número: ', 'input-9', 'label-10');
-    app.innerHTML += createInput('text', 'input-10');
-    app.innerHTML += createButtonSuccess('Ingresar', 'btn-10'); 
-    
-    let button = document.getElementById('btn-10');
-    let input = document.getElementById('input-10');
-    let label = document.getElementById('label-10');    
-    
-    button.addEventListener('click', () => {                
-        if (isNaN(input.value) || input.value == '') {
-            alert('debes ingresar solo números');
-            input.value = '';
-        } else {
-            if (!booleano){
-                let num2 = Number(input.value);                
-                let resultado = restar(num1, num2);
-                input.style.display = 'none';
-                button.style.display = 'none';
-                label.style.display = 'none';            
-                app.innerHTML += createParrafo(`Resultado de ${num1} + ${num2} = ${resultado}`);
-                button.disabled = true;
-            }
-            num1 = Number(input.value);
-            booleano = false;            
-            input.value = '';
-            label.innerText = 'Ingrese otro número: ';
-            button.innerText = 'Restar';                   
-        }      
-    });    
+    app.innerHTML += createParrafo(`Segundo parrafo (el primero es la consigna)`, 'p-10a');
+    app.innerHTML += createParrafo(`Tercer parrafo`, 'p-10b');
+
+    $(document).ready( () => {        
+        $('p:first').click( () => {
+            alert('Has hecho click en el primer párrafo!');
+        });
+    });   
 }
 
 const eOnce = () => {
-    
+    app.innerHTML += `
+        <table>
+            <tr>
+                <td>Fila 1, Columna 1</td>
+                <td>Fila 1, Columna 2</td>
+            </tr>
+        <tr>
+            <td>Fila 2, Columna 1</td>
+            <td>Fila 2, Columna 2</td>
+        </tr>
+        </table>
+    `
+
+    $(document).ready( () => {
+        $('td').click(event => $(event.target).css({
+            'background-color': 'darkslategray'
+        }));       
+    });
 }
 
 const eDoce = () => {
+    app.innerHTML += `
+        <ul>
+            <li>Elemento 1</li>
+            <li>Elemento 2</li>
+            <li>Elemento 3</li>
+            <li>Elemento 4</li>
+        </ul>
+    `
+    $(document).ready( () => {
+        $('li').click(event => $(event.target).hide());
+    });
+}
 
+const craeteTable2x3 = (id) => {
+    return `<table id="${id}">
+      <tr>
+        <td class="td0">Fila 1, Columna 1</td>
+        <td class="td0">Fila 1, Columna 2</td>
+      </tr>
+      <tr>
+        <td class="td1">Fila 2, Columna 1</td>
+        <td class="td1">Fila 2, Columna 2</td>
+      </tr>
+      <tr>
+        <td class="td2">Fila 3, Columna 1</td>
+        <td class="td2">Fila 3, Columna 2</td>
+      </tr>
+    </table>`
 }
 
 const eTrece = () => {
-
+    app.innerHTML += `
+        ${craeteTable2x3('tabla1')}
+        <br>
+        ${craeteTable2x3('tabla2')}
+    `
+    /* $(document).ready(() => {
+        // Seleccionar las filas de la primera tabla y agregar un evento click
+        $('tr').click(event => { 
+            const indiceFila = $(event.currentTarget).index();
+            console.log(indiceFila);        
+            $(`#tabla1 .td${indiceFila}`).css('background-color', 'darkslategray');
+        });
+    }); */
+    $(document).ready(() => {
+        $('#tabla1 tr').click(event => {
+            const indiceFila = $(event.currentTarget).index();
+            console.log(indiceFila);
+            $(`#tabla1 .td${indiceFila}`).css('background-color', 'darkslategray');
+        })     
+    });
 }
 
 const eCatorce = () => {
-
+    app.innerHTML += `
+        <h1>Noticias</h1>
+        <div class="noticia">
+            <h2>Título de la noticia 1</h2>
+            <p>Descripción de la noticia 1.</p>
+        </div>    
+        <div class="noticia">
+            <h2>Título de la noticia 2</h2>
+            <p>Descripción de la noticia 2.</p>
+        </div>    
+        <div class="noticia">
+            <h2>Título de la noticia 3</h2>
+            <p>Descripción de la noticia 3.</p>
+        </div>
+        <br>
+        ${createButtonSuccess('Aumentar Font', 'aumentar-font')}
+        <br>
+        ${createButtonDanger('Disminuir Font', 'disminuir-font')}
+        <br>
+        ${createButtonPrimary('Disminuir Font', 'disminuir-font')}
+    `
 }
 
 const eQuince = () => {

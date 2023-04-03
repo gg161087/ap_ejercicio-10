@@ -68,3 +68,11 @@ input{
     padding: 10px;
     margin-top: 5vh; 
 }
+table { 
+    border-collapse: collapse;     
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
