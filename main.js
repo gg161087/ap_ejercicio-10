@@ -418,7 +418,9 @@ const eCatorce = () => {
         <br>
         ${createButtonSuccess('Aumentar Font', 'aumentar-font')}
         <br>
+        <br>
         ${createButtonDanger('Disminuir Font', 'disminuir-font')}
+        <br>
         <br>
         ${createButtonPrimary('Disminuir Font', 'disminuir-font')}
     `
