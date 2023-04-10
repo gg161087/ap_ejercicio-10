@@ -145,7 +145,7 @@ const eF = () => {
         <p>Promedio: ${resultado/arrayUnoASeis.length}</p>
     `
 }
-const selector2 = () => { 
+const selectorConsigna = () => { 
     let value = document.getElementById('select-2').value;          
     switch (value) {
         case "a":
@@ -153,12 +153,16 @@ const selector2 = () => {
             break;
         case "b":
             eB();
+            break;
         case "c":
             eC();
+            break;
         case "d":
             eD();
+            break;
         case "e":
             eE();
+            break;
         case "f":
             eF();    
             break;
@@ -171,7 +175,7 @@ const eDos = () => {
     app.innerHTML += `
         ${createLabel('Seleccione letra de ejercicio:', 'eDos', 'label-2')}
         ${createSelect('eDos', 'select-2')}
-        ${createButtonPrimary('Seleccionar','btn-2','selector2()')}
+        ${createButtonPrimary('Seleccionar','btn-2','selectorConsigna()')}
     `
     let selectEDos = document.getElementById('select-2');    
     selectEDos.innerHTML += `
@@ -425,9 +429,49 @@ const eCatorce = () => {
         ${createButtonPrimary('Disminuir Font', 'disminuir-font')}
     `
 }
-
 const eQuince = () => {
-
+    app.innerHTML += `
+        <table id="tabla1">
+            <tr>
+                <td>Texto 1</td>
+                <td>Texto 2</td>
+                <td>Texto 3</td>
+            </tr>
+            <tr>
+                <td>Texto 4</td>
+                <td>Texto 5</td>
+                <td>Texto 6</td>
+            </tr>
+            <tr>
+                <td>Texto 7</td>
+                <td>Texto 8</td>
+                <td>Texto 9</td>
+            </tr>
+        </table>
+        <table id="tabla2">
+            <tr>
+                <td>Texto A</td>
+                <td>Texto B</td>
+                <td>Texto C</td>
+            </tr>
+            <tr>
+                <td>Texto D</td>
+                <td>Texto E</td>
+                <td>Texto F</td>
+            </tr>
+            <tr>
+                <td>Texto G</td>
+                <td>Texto H</td>
+                <td>Texto I</td>
+            </tr>
+        </table>        
+    `
+    app.innerHTML += `${createButtonSuccess('Cambiar', 'btn-15')}`
+    $(document).ready( () => {
+        $("#btn-15").click( () => {
+            $("#tabla1 td").text("-");
+        });
+    });
 }
 
 const eDieciseis = () => {
@@ -466,7 +510,7 @@ const eVeinticuatro = () => {
 
 }
 
-const selector = () => {
+const selectorEjercicio = () => {
     const value = parseInt(document.getElementById('selector').value);    
     let enunciado = '';        
     switch (value) {
