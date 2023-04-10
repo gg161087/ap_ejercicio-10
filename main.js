@@ -473,41 +473,167 @@ const eQuince = () => {
         });
     });
 }
-
-const eDieciseis = () => {
-
+const setLink = (url) => {
+    $('#link').attr('href', url);
+    $('#link').text('Haz clic aquí para visitar ' + url);
+}
+const eDieciseis = () => {  
+    app.innerHTML += `
+        <a href="" id="link" target="_blank">Haz clic aquí</a>
+        <br>
+        <br>
+    `
+    app.innerHTML += `
+        <button class="btn btn-primary" onclick="setLink('https://www.google.com')">Enlace a Google</button>
+        <button class="btn btn-danger" onclick="setLink('https://www.facebook.com')">Enlace a Facebook</button>
+        <button class="btn btn-success" onclick="setLink('https://www.twitter.com')">Enlace a Twitter</button>
+    `
 }
 
 const eDiecisiete = () => {
-
+    app.innerHTML += `
+    <p>Lorem ipsum <strong>dolor</strong> sit amet consectetur, adipisicing elit. Aliquid delectus <strong>doloribus</strong> eius omnis minima <strong>dolorum</strong> corrupti! Autem facere harum enim quam, ipsam inventore alias velit vel earum tempore, officia suscipit!</p>
+    `
+    $(document).ready(() => {
+        $('strong').click((event) => {
+          $(event.currentTarget).hide();
+        });
+    });
 }
 
 const eDieciocho = () => {
-
+    app.innerHTML += `
+        <table>
+            <tr>
+                <td class="cell"></td>
+                <td class="cell"></td>
+             </tr>
+            <tr>
+                <td class="cell"></td>
+                <td class="cell"></td>
+            </tr>
+        </table>
+    `
+    $(document).ready(() => {
+        $('.cell').hover(
+            (event) => $(event.currentTarget).css('background-color', 'yellow')            
+        );
+    });
 }
 
 const eDiecinueve = () => {
-
+    app.innerHTML += `
+        <table>
+            <tr>
+                <td class="cell"></td>
+                <td class="cell"></td>
+             </tr>
+            <tr>
+                <td class="cell"></td>
+                <td class="cell"></td>
+            </tr>
+        </table>
+    `
+    $(document).ready(() => {
+        $('.cell').hover(
+            (event) => $(event.currentTarget).css('background-color', 'yellow'),
+            (event) => $(event.currentTarget).css('background-color', '')
+        );
+    });
 }
 
 const eVeinte = () => {
-
+    app.innerHTML += createDiv('div-20');
+    const div20 = document.getElementById('div-20');
+    div20.style.width = '800px';
+    div20.style.height = '70px';
+    div20.style.backgroundColor = 'gray';
+    $(document).ready(() => {
+        $('#div-20').dblclick(() => {
+            if ($('#div-20').width() == 800) {
+                $('#div-20').animate({width: '250px', height: '250px'}, 500);
+            } else {
+                $('#div-20').animate({width: '800px', height: '70px'}, 500);
+            }
+        });
+    });
 }
 
 const eVeintiuno = () => {
-
+    app.innerHTML += createDiv('div-21a');
+    const div21a = document.getElementById('div-21a');
+    
+    div21a.innerHTML += `
+        <p>Parrafo 1</p>
+        <p>Parrafo 2</p>
+        <p>Parrafo 3</p>
+        <p>Parrafo 4</p>
+    `
+    $(document).ready(() => {        
+        $('#div-21a p:not(:first)').hide();
+        
+        $('#div-21a').mousedown(() => {          
+            let visible = $('#div-21a p:visible:first');          
+            if (visible.next().length > 0) { 
+                visible.fadeOut(1000, () => {
+                    visible.next().fadeIn(1000);
+                });
+            } else {
+                visible.fadeOut(1000, () => {
+                    $('#div-21a p:first').fadeIn(1000);
+                });
+            }
+        });
+    });
 }
 
 const eVeintidos = () => {
-
+    app.innerHTML += `
+        ${createLabel('Mostrar con console.log:', 'eVeintidos', 'label-22')}
+        ${createSelect('eVeintidos', 'select-22')}        
+    `
+    let selectEVeintidos = document.getElementById('select-22');    
+    selectEVeintidos.innerHTML += `
+        ${createOption('1','Opción 1')}
+        ${createOption('2','Opción 2')}
+        ${createOption('3','Opción 3')}        
+    `
+    $(document).ready(() => {
+        $('#select-22').change(() => {
+          console.log($('#select-22').val());
+        });
+    });
 }
 
 const eVeintitres = () => {
-
+    app.innerHTML += `
+        <a href="https://www.google.com" id="link-23">Enlace a Google</a>
+    `
+    $(document).ready(() => {
+        $('#link-23').click((event) => {
+            event.preventDefault();
+            console.log($('#link-23').attr('href'));
+        });
+    });
 }
 
 const eVeinticuatro = () => {
-
+    app.innerHTML += `
+        <form id="form">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name"><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br>
+            <button type="submit" id="submitBtn">Enviar</button>
+        </form>
+        <div id="message"></div>
+    `
+    $(document).ready(() => {
+        $('#form').submit((event) => {
+            event.preventDefault();
+            $('#message').text('El formulario ha sido enviado');
+        });
+    });
 }
 
 const selectorEjercicio = () => {
